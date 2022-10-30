@@ -48,14 +48,18 @@ public class GameManager : MonoBehaviour
         string time = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         clockText.text = time;
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            PauseGame(!paused);
+        }
+
 
         // FOR TESTING
         if (Input.GetKeyDown(KeyCode.Space)) {
             GameObject enemy = Instantiate(enemyPrefabs[0], spawnPoints[0]);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            PauseGame(!paused);
+        if (Input.GetKeyDown(KeyCode.P)) {
+            player.GetComponent<ExpHandler>().LevelUp();
         }
     }
 

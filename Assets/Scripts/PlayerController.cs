@@ -13,10 +13,6 @@ public class PlayerController : BaseController
     ParticleSystem.EmissionModule footEmission;
 
 
-    // Audio
-    public AudioSource audioSource;
-    public AudioClip[] audioClips;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +26,6 @@ public class PlayerController : BaseController
     {
         if (GameManager.instance.paused == true) {
             return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.P)) {
-            GetComponent<ExpHandler>().LevelUp();
         }
 
         MoveControls();

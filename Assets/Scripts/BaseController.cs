@@ -7,4 +7,9 @@ public class BaseController : MonoBehaviour
     public Rigidbody2D rb;
 
     public SpriteRenderer sprite;
+
+    
+    // Audio
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
 }

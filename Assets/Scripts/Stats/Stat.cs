@@ -89,7 +89,6 @@ public enum PlayerStats {
     ItemSlots
 }
 
-
 [System.Serializable]
 public enum WeaponStats {
     Damage,

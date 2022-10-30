@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.TryGetComponent<Stats>(out Stats stats)) {
+        if (other.collider.TryGetComponent<StatsHandler>(out StatsHandler stats)) {
             stats.TakeDamage(damage);
 
             Vector2 dir = (other.transform.position - transform.position).normalized;

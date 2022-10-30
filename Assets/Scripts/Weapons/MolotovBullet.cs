@@ -60,7 +60,7 @@ public class MolotovBullet : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.TryGetComponent<Stats>(out Stats stats)) {
+        if (other.TryGetComponent<StatsHandler>(out StatsHandler stats)) {
             int index = hitEnemies.FindIndex(x => x.enemy == other.gameObject);
 
             if (index >= 0) {

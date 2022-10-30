@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
-public class Stats : MonoBehaviour
+public class StatsHandler : MonoBehaviour
 {
-    public int maxHealth;
+    public string unitName;
+    public BaseStats baseStats;
+    public Stat[] stats;
     public int curHealth;
 
     public Material deadMaterial;
@@ -15,13 +18,31 @@ public class Stats : MonoBehaviour
     public float deadClock = 0f;
     public bool dead = false;
 
+    protected void Awake() {
+        unitName = baseStats.unitName;
+
+        // Set Sprite
+        gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = baseStats.sprite;
+
+        stats = new Stat[System.Enum.GetNames(typeof(PlayerStats)).Length];
+
+        for (int i = 0; i < stats.Length; i++) {
+            stats[i] = new Stat(Regex.Replace(System.Enum.GetName(typeof(PlayerStats), i).ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1"));
+            stats[i].SetBaseValue(0);
+        }
+
+        // Set stats using BaseUnitStats
+        foreach (StatValue sv in baseStats.stats) {
+            int slot = (int) sv.stat;
+            stats[slot].SetBaseValue(sv.value);
+        }
+
+        FullHeal();
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        if (maxHealth <= 0) {
-            maxHealth = 10;
-        }
-        curHealth = maxHealth;
     }
 
     void Update() {
@@ -57,5 +78,9 @@ public class Stats : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
 
         dead = true;
+    }
+
+    public void FullHeal() {
+        curHealth = (int)stats[(int)PlayerStats.MaxHP].GetValue();
     }
 }

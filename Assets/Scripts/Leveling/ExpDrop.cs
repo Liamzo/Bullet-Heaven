@@ -7,7 +7,7 @@ public class ExpDrop : MonoBehaviour
 	public GameObject expDropPrefab;
 
     void Start() {
-		Stats stats = GetComponent<Stats>();
+		StatsHandler stats = GetComponent<StatsHandler>();
 
 		stats.OnDeath += DropExp;
 	}

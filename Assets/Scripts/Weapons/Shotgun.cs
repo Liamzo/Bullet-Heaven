@@ -38,9 +38,9 @@ public class Shotgun : Weapon
     }
 
     public override void Fire() {
-        List<Stats> targets = EnemiesInCone();
+        List<StatsHandler> targets = EnemiesInCone();
 
-        foreach(Stats target in targets) {
+        foreach(StatsHandler target in targets) {
             target.TakeDamage(CalculateDamage());
 
             Vector2 dir = (target.transform.position - transform.position).normalized;
@@ -52,10 +52,10 @@ public class Shotgun : Weapon
         fireEffect.Play();
     }
 
-    List<Stats> EnemiesInCone() {
+    List<StatsHandler> EnemiesInCone() {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
         
-        List<Stats> enemyStats = new List<Stats>();
+        List<StatsHandler> enemyStats = new List<StatsHandler>();
 
         foreach (EnemyController e in enemies) {
             float dist = Vector3.Distance(e.transform.position, transform.position);
@@ -63,7 +63,7 @@ public class Shotgun : Weapon
             Vector2 dir = (e.transform.position - transform.position).normalized;
 
             if (dist <= CalculateRange() && (Vector3.Angle(firePoint.right, dir) <= angle / 2f || dist < 0.5f)) {
-                enemyStats.Add(e.GetComponent<Stats>());
+                enemyStats.Add(e.GetComponent<StatsHandler>());
             }
         }
 

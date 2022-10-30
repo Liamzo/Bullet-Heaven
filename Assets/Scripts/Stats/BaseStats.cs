@@ -9,7 +9,4 @@ public class BaseStats : ScriptableObject {
     public Sprite sprite;
 
     public List<StatValue> stats;
-
-    public List<GameObject> startingWeapons;
-    public List<PassiveItem> startingItems;
 }

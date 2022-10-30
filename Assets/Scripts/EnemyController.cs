@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
+    public EnemyStatsHandler enemyStats;
+
     public PlayerController player;
 
-    public float moveSpeed;
     public Vector2 movement;
 
     public float attackCD;
     public float attackCDTimer;
-
-    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -43,15 +42,15 @@ public class EnemyController : BaseController
             sprite.flipX = false;
         }
 
-
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        // STATS
+        rb.MovePosition(rb.position + movement.normalized * enemyStats.stats[(int)PlayerStats.MoveSpeed].GetValue() * Time.fixedDeltaTime);
     }
 
     private void OnCollisionStay2D(Collision2D other) {
         if (attackCDTimer <= 0f && other.transform.tag == "Player") {
             attackCDTimer = attackCD;
 
-            other.transform.GetComponent<PlayerStatsHandler>().TakeDamage(damage);
+            other.transform.GetComponent<PlayerStatsHandler>().TakeDamage(Mathf.RoundToInt(enemyStats.stats[(int)PlayerStats.Damage].GetValue()));
         }
     }
 }
