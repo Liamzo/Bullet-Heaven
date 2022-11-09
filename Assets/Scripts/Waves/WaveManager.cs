@@ -18,6 +18,13 @@ public class WaveManager : MonoBehaviour
     float spawnCounter = 0f;
     public float spawnWidth;
 
+    public List<GameObject> enemyPrefabs;
+
+
+    // Extra Ideas
+    float rampRate;
+    List<int> extraWaves;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,13 +67,14 @@ public class WaveManager : MonoBehaviour
 
             SpawnEnemies(currentWave.initialWave);
 
-            if (currentWave.elitePrefab != null) {
+            if (currentWave.eliteStats != null) {
                 // Pick random position
                 Vector3 pos = UnityEngine.Random.insideUnitCircle.normalized * spawnWidth;
 
                 pos += player.transform.position;
 
-                GameObject enemy = Instantiate(currentWave.elitePrefab, pos, Quaternion.identity);
+                GameObject enemy = Instantiate(enemyPrefabs[0], pos, Quaternion.identity);
+                enemy.GetComponent<EnemyStatsHandler>().baseStats = currentWave.eliteStats;
             }
         } else {
             // Spawn enemies per sec
@@ -88,7 +96,10 @@ public class WaveManager : MonoBehaviour
 
             pos += player.transform.position;
 
-            GameObject enemy = Instantiate(currentWave.GetBasicEnemy(), pos, Quaternion.identity);
+            BaseStats enemyStats = currentWave.GetBasicEnemy();
+
+            GameObject enemy = Instantiate(enemyPrefabs[0], pos, Quaternion.identity);
+            enemy.GetComponent<EnemyStatsHandler>().baseStats = enemyStats;
         }
     }
 

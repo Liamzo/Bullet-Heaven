@@ -8,12 +8,18 @@ public class PlayerStatsHandler : StatsHandler
     public event System.Action OnUIChange;
 
     override protected void Start() {
+        base.Start();
+
         foreach(GameObject weapon in ((PlayerBaseStats)baseStats).startingWeapons) {
             GetComponent<EquipmentHandler>().AddWeapon(weapon);
         }
 
         foreach(PassiveItem item in ((PlayerBaseStats)baseStats).startingItems) {
             GetComponent<EquipmentHandler>().AddItem(item);
+        }
+
+        if (OnUIChange != null) {
+            OnUIChange();
         }
 	}
 

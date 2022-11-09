@@ -21,6 +21,8 @@ MonoBehaviour:
     value: 6
   - stat: 7
     value: 6
+  - stat: 1
+    value: 10
   startingWeapons:
   - {fileID: 2467914154123405837, guid: 0d6a89f5a04b7494baa6276ffdb6a682, type: 3}
   startingItems: []

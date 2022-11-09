@@ -23,12 +23,14 @@ public class LevelOptionNewPassive : LevelOption
 	}
 
     public override string MakeDescription() {
+		string description = item.itemName + "\n";
+
 		if (item.modifier.type == ModifierTypes.Flat) {
-        	return description = "+" + item.modifier.value + " " + Regex.Replace(item.stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
+        	description += "+" + item.modifier.value + " " + Regex.Replace(item.stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
 		} else if (item.modifier.type == ModifierTypes.Multiplier) {
-			return description = "+" + item.modifier.value + "% " + Regex.Replace(item.stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
+			description += "+" + item.modifier.value + "% " + Regex.Replace(item.stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
 		}
 
-        return base.MakeDescription();
+		return description;
     }
 }

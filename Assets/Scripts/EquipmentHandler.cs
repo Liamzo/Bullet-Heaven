@@ -9,6 +9,8 @@ public class EquipmentHandler : MonoBehaviour
 
     public List<PassiveItem> items = new List<PassiveItem>();
 
+    public event System.Action OnUIChange;
+
     public void AddWeapon(GameObject weapon) {
         if (weapons.Count >= GetComponent<PlayerStatsHandler>().stats[(int)PlayerStats.WeaponSlots].GetValue()) {
             return;
@@ -17,6 +19,10 @@ public class EquipmentHandler : MonoBehaviour
         GameObject go = Instantiate(weapon, gunSlots[weapons.Count]);
         weapons.Add(go);
         EquipmentManager.instance.RemoveWeapon(weapon);
+
+        if (OnUIChange != null) {
+            OnUIChange();
+        }
     }
 
     public void AddItem(PassiveItem item) {

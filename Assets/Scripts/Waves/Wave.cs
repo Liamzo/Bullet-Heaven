@@ -8,32 +8,32 @@ public class Wave
     public int initialWave;
     public int spawnsPerSecond;
 
-    public List<SpawnChance> enemyPrefabs;
-    public GameObject elitePrefab;
+    public List<SpawnChance> enemiesStats;
+    public BaseStats eliteStats;
 
 
-    public GameObject GetBasicEnemy() {
+    public BaseStats GetBasicEnemy() {
         int chance = 0;
 
-        enemyPrefabs.ForEach(x => chance += x.spawnChance);
+        enemiesStats.ForEach(x => chance += x.spawnChance);
 
         int rand = Random.Range(1, chance+1);
         int counter = 0;
         while (rand > 0) {
-            rand -= enemyPrefabs[counter].spawnChance;
+            rand -= enemiesStats[counter].spawnChance;
 
             if (rand > 0) {
                 counter++;
             }
         }
         
-        return enemyPrefabs[counter].enemyPrefab;
+        return enemiesStats[counter].enemyStats;
     }
 
 
     [System.Serializable]
     public struct SpawnChance {
-        public GameObject enemyPrefab;
+        public BaseStats enemyStats;
         public int spawnChance;
     }
 }

@@ -11,11 +11,15 @@ public class PlayerPanel : MonoBehaviour
 
     public PlayerStatsHandler playerStats;
     public ExpHandler playerExp;
+    public EquipmentHandler playerEquipment;
 
     public Slider healthBar;
     public Slider expBar;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
+
+    public Image[] weaponSlots;
+    public Sprite emptySlotImage;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +27,12 @@ public class PlayerPanel : MonoBehaviour
         playerStats.OnUIChange += UpdateHealth;
         playerExp.OnUIChange += UpdateExp;
         levelUpPanel.LevelCompleteAction += UpdateExp;
+        playerEquipment.OnUIChange += UpdateEquipment;
 
-        UpdateHealth();
-        UpdateExp();
+        expBar.maxValue = playerExp.expNextLevel;
+        expBar.value = playerExp.exp;
+
+        expText.text = "LV. " + playerExp.level;
     }
 
     void UpdateHealth() {
@@ -43,5 +50,16 @@ public class PlayerPanel : MonoBehaviour
         expText.text = "LV. " + playerExp.level;
 
         UpdateHealth();
+    }
+
+    void UpdateEquipment() {
+        int i = 0;
+        for (i = 0; i < playerEquipment.weapons.Count; i++) {
+            weaponSlots[i].sprite = playerEquipment.weapons[i].GetComponent<Weapon>().sprite;
+        }
+        for (int j = i; j < weaponSlots.Length; j++) {
+
+            weaponSlots[j].sprite = emptySlotImage;
+        }
     }
 }

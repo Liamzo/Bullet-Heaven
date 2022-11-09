@@ -18,7 +18,7 @@ public class StatsHandler : MonoBehaviour
     public float deadClock = 0f;
     public bool dead = false;
 
-    protected void Awake() {
+    protected virtual void Start() {
         unitName = baseStats.unitName;
 
         // Set Sprite
@@ -41,9 +41,9 @@ public class StatsHandler : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    protected virtual void Start()
-    {
-    }
+    // protected virtual void Start()
+    // {
+    // }
 
     void Update() {
         if (dead) {
