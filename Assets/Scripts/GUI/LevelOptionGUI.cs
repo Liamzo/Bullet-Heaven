@@ -8,6 +8,7 @@ public class LevelOptionGUI : MonoBehaviour
 {
     public LevelUpPanel panel;
 
+    public TextMeshProUGUI levelName;
     public TextMeshProUGUI description;
     public Image image;
 

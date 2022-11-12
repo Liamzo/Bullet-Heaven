@@ -23,6 +23,7 @@ public class PassiveItem: ScriptableObject
             LevelOptionUpgradePassive option = levelUpgrades[level-1];
             option.player = player;
             option.item = this;
+            option.levelName = itemName;
             option.description = option.description == "" ? option.MakeDescription() : option.description;
             option.icon = option.icon == null ? sprite : option.icon;
             return option;

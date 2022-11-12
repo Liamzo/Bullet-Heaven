@@ -21,7 +21,7 @@ public class LevelOptionUpgradeWeapon : LevelOption
 	}
 
 	public override string MakeDescription() {
-		string description = weapon.weaponName + "\n";
+		string description = "Lv. " + weapon.level + "\n";
 
 		if (modifier.type == ModifierTypes.Flat) {
         	description += "+" + modifier.value + " " + Regex.Replace(stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");

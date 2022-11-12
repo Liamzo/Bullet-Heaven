@@ -7,6 +7,7 @@ public abstract class LevelOption
 {
     public GameObject player;
 
+    public string levelName;
     public string description;
     public Sprite icon;
 

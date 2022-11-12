@@ -112,6 +112,7 @@ public abstract class Weapon : MonoBehaviour
             LevelOptionUpgradeWeapon option = levelUpgrades[level-1];
             option.player = playerStats.gameObject;
             option.weapon = this;
+            option.levelName = weaponName;
             option.description = option.description == "" ? option.MakeDescription() : option.description;
             option.icon = option.icon == null ? sprite : option.icon;
             return option;

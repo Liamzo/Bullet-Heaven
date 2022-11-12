@@ -10,7 +10,8 @@ public class LevelOptionNewWeapon : LevelOption
         this.weapon = weapon;
         this.icon = weapon.GetComponent<Weapon>().sprite;
 
-        this.description = weapon.GetComponent<Weapon>().weaponName;
+        this.levelName = weapon.GetComponent<Weapon>().weaponName;
+        this.description = "";
     }
 
 	public override void Select()

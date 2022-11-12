@@ -12,6 +12,7 @@ public class LevelOptionNewPassive : LevelOption
 
         this.icon = item.sprite;
 
+        this.levelName = item.itemName;
         this.description = MakeDescription();
     }
 
@@ -23,8 +24,6 @@ public class LevelOptionNewPassive : LevelOption
 	}
 
     public override string MakeDescription() {
-		string description = item.itemName + "\n";
-
 		if (item.modifier.type == ModifierTypes.Flat) {
         	description += "+" + item.modifier.value + " " + Regex.Replace(item.stat.ToString(), "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
 		} else if (item.modifier.type == ModifierTypes.Multiplier) {

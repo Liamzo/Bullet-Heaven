@@ -39,6 +39,7 @@ public class LevelUpPanel : MonoBehaviour
             optionGUI.panel = this;
             optionGUI.levelOption = option;
             optionGUI.image.sprite = option.icon;
+            optionGUI.levelName.text = option.levelName;
             optionGUI.description.text = option.description;
 
             count++;
