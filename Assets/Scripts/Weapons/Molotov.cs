@@ -18,12 +18,20 @@ public class Molotov : Weapon
         Transform target = GetRandomEnemy();
 
         if (target == null) {
+            spriteRenderer.enabled = false;
             return;
+        }
+
+        if (CalculateCD() < 1f) {
+            spriteRenderer.enabled = true;
+        } else if (baseCDTimer <= 0.2f) {
+            spriteRenderer.enabled = true;
         }
 
         if (baseCDTimer <= 0f) {
             Fire();
             baseCDTimer = CalculateCD();
+            spriteRenderer.enabled = false;
         }
     }
 

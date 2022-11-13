@@ -1034,18 +1034,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2059294944, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}
-      propertyPath: baseStats
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e5015ebce5590a4e8742f70c2245758, type: 2}
-    - target: {fileID: 4614640111561145025, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}
-      propertyPath: weapons.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6046172113674239763, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}
-      propertyPath: range
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8203196050633460768, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1094,6 +1082,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6046172113674239763, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d207cc76044ce0d4e993b6bfbaad2e2d, type: 3}

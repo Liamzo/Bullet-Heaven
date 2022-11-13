@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
 {
     public string weaponName;
 
+    public PlayerController playerController;
     public PlayerStatsHandler playerStats;
 
     public SpriteRenderer spriteRenderer;
@@ -50,17 +51,28 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected virtual void Start() {
+        playerController = FindObjectOfType<PlayerController>();
         playerStats = FindObjectOfType<PlayerStatsHandler>();
+
+        spriteRenderer.enabled = false;
     }
 
     // Update is called once per frame
     protected abstract void Update();
 
     protected virtual void AimAtTarget(Transform target) {
+        Vector3 aimPos = (target.position - transform.position).normalized * 0.7f;
+
+        transform.localPosition = aimPos;
+
+        LookAtTarget(target);
+    }
+
+    protected virtual void LookAtTarget(Transform target) {
         Vector3 dir = target.position - transform.position;
         transform.right = dir;
 
-        if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z <= 270) {
+        if (transform.parent.transform.eulerAngles.z >= 90 && transform.parent.transform.eulerAngles.z <= 270) {
             spriteRenderer.flipY = true;
         } else {
             spriteRenderer.flipY = false;
@@ -78,7 +90,7 @@ public abstract class Weapon : MonoBehaviour
 
         Transform tMin = null;
         float minDist = Mathf.Infinity;
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.parent.transform.position;
         foreach (Transform t in enemyTransforms)
         {
             float dist = Vector3.Distance(t.position, currentPos);

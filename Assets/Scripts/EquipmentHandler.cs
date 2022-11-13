@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EquipmentHandler : MonoBehaviour
 {
+    public Transform weaponHolder;
     public List<GameObject> weapons = new List<GameObject>();
-    public List<Transform> gunSlots = new List<Transform>();
 
     public List<PassiveItem> items = new List<PassiveItem>();
 
@@ -16,7 +16,7 @@ public class EquipmentHandler : MonoBehaviour
             return;
         }
 
-        GameObject go = Instantiate(weapon, gunSlots[weapons.Count]);
+        GameObject go = Instantiate(weapon, weaponHolder);
         weapons.Add(go);
         EquipmentManager.instance.RemoveWeapon(weapon);
 

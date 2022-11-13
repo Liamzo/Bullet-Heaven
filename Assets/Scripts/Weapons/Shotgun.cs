@@ -26,10 +26,19 @@ public class Shotgun : Weapon
         Transform target = GetClosestEnemy();
 
         if (target == null) {
+            spriteRenderer.enabled = false;
             return;
         }
 
         AimAtTarget(target);
+
+        if (CalculateCD() < 1f) {
+            spriteRenderer.enabled = true;
+        } else if (baseCDTimer <= 0.2f) {
+            spriteRenderer.enabled = true;
+        } else if (baseCDTimer <= CalculateCD() - 0.2f) {
+            spriteRenderer.enabled = false;
+        }
         
         if (baseCDTimer <= 0f) {
             Fire();

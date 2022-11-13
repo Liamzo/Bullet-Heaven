@@ -12,10 +12,19 @@ public class Pistol : Weapon
         Transform target = GetClosestEnemy();
 
         if (target == null) {
+            spriteRenderer.enabled = false;
             return;
         }
 
         AimAtTarget(target);
+
+        if (CalculateCD() < 1f) {
+            spriteRenderer.enabled = true;
+        } else if (baseCDTimer <= 0.2f) {
+            spriteRenderer.enabled = true;
+        } else if (baseCDTimer <= CalculateCD() - 0.2f) {
+            spriteRenderer.enabled = false;
+        }
         
         if (baseCDTimer <= 0f) {
             Fire();
@@ -23,7 +32,7 @@ public class Pistol : Weapon
         }
     }
 
-    protected override void AimAtTarget(Transform target) {
+    protected override void LookAtTarget(Transform target) {
         Vector3 dir = target.position - transform.position;
         transform.right = dir;
 
