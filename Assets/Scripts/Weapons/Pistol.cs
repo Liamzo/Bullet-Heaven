@@ -9,14 +9,14 @@ public class Pistol : Weapon
         baseCDTimer -= Time.deltaTime;
 
         // Find and look at target
-        Vector3 target = GetClosestEnemy();
+        Vector3? target = GetClosestEnemy();
 
         if (target == null) {
             spriteRenderer.enabled = false;
             return;
         }
 
-        AimAtTarget(target);
+        AimAtTarget(target.Value);
 
         if (CalculateCD() < 1f) {
             spriteRenderer.enabled = true;
@@ -43,7 +43,7 @@ public class Pistol : Weapon
         }
     }
 
-    protected override Vector3 GetClosestEnemy() {
+    protected override Vector3? GetClosestEnemy() {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
         
         List<Transform> enemyTransforms = new List<Transform>();

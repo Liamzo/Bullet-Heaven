@@ -79,7 +79,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    protected virtual Vector3 GetClosestEnemy() {
+    protected virtual Vector3? GetClosestEnemy() {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
         
         List<Transform> enemyTransforms = new List<Transform>();
