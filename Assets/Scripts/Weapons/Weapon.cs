@@ -60,16 +60,16 @@ public abstract class Weapon : MonoBehaviour
     // Update is called once per frame
     protected abstract void Update();
 
-    protected virtual void AimAtTarget(Transform target) {
-        Vector3 aimPos = (target.position - transform.position).normalized * 0.7f;
+    protected virtual void AimAtTarget(Vector3 target) {
+        Vector3 aimPos = (target - transform.parent.transform.position).normalized * 0.7f;
 
         transform.localPosition = aimPos;
 
         LookAtTarget(target);
     }
 
-    protected virtual void LookAtTarget(Transform target) {
-        Vector3 dir = target.position - transform.position;
+    protected virtual void LookAtTarget(Vector3 target) {
+        Vector3 dir = target - transform.position;
         transform.right = dir;
 
         if (transform.parent.transform.eulerAngles.z >= 90 && transform.parent.transform.eulerAngles.z <= 270) {
@@ -79,7 +79,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    protected virtual Transform GetClosestEnemy() {
+    protected virtual Vector3 GetClosestEnemy() {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
         
         List<Transform> enemyTransforms = new List<Transform>();
@@ -100,7 +100,7 @@ public abstract class Weapon : MonoBehaviour
                 minDist = dist;
             }
         }
-        return tMin;
+        return tMin.position;
     }
 
 

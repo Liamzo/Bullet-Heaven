@@ -8,6 +8,7 @@ public class PlayerController : BaseController
 
     public float moveSpeed;
     public Vector2 movement;
+    public Vector3 dirForward;
 
     public ParticleSystem footSteps;
     ParticleSystem.EmissionModule footEmission;
@@ -63,5 +64,9 @@ public class PlayerController : BaseController
     public void MoveControls() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement != Vector2.zero) {
+            dirForward = (Vector3)movement.normalized;
+        }
     }
 }

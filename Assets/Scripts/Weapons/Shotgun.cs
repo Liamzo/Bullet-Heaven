@@ -23,7 +23,7 @@ public class Shotgun : Weapon
         baseCDTimer -= Time.deltaTime;
 
         // Find and look at target
-        Transform target = GetClosestEnemy();
+        Vector3 target = playerController.transform.position + playerController.dirForward;
 
         if (target == null) {
             spriteRenderer.enabled = false;
@@ -59,6 +59,17 @@ public class Shotgun : Weapon
 
         PlayRandomAudioClip();
         fireEffect.Play();
+    }
+
+    protected override void LookAtTarget(Vector3 target) {
+        Vector3 dir = target - transform.position;
+        transform.right = dir;
+
+        if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z <= 270) {
+            spriteRenderer.flipY = true;
+        } else {
+            spriteRenderer.flipY = false;
+        }
     }
 
     List<StatsHandler> EnemiesInCone() {

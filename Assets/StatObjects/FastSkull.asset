@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FastSkull
   m_EditorClassIdentifier: 
   unitName: FastSkull
-  sprite: {fileID: -1254797350, guid: 125989c4d07ba3546b334326b8d76055, type: 3}
+  sprite: {fileID: 21300000, guid: b4e2aa075eb274f41974136bd0d7258c, type: 3}
   stats:
   - stat: 0
     value: 5

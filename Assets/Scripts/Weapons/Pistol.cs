@@ -9,7 +9,7 @@ public class Pistol : Weapon
         baseCDTimer -= Time.deltaTime;
 
         // Find and look at target
-        Transform target = GetClosestEnemy();
+        Vector3 target = GetClosestEnemy();
 
         if (target == null) {
             spriteRenderer.enabled = false;
@@ -32,8 +32,8 @@ public class Pistol : Weapon
         }
     }
 
-    protected override void LookAtTarget(Transform target) {
-        Vector3 dir = target.position - transform.position;
+    protected override void LookAtTarget(Vector3 target) {
+        Vector3 dir = target - transform.position;
         transform.right = dir;
 
         if (transform.eulerAngles.z >= 90 && transform.eulerAngles.z <= 270) {
@@ -43,7 +43,7 @@ public class Pistol : Weapon
         }
     }
 
-    protected override Transform GetClosestEnemy() {
+    protected override Vector3 GetClosestEnemy() {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
         
         List<Transform> enemyTransforms = new List<Transform>();
@@ -64,7 +64,7 @@ public class Pistol : Weapon
                 minDist = dist;
             }
         }
-        return tMin;
+        return tMin.position;
     }
 
 
