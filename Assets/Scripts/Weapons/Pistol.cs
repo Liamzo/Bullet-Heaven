@@ -64,7 +64,7 @@ public class Pistol : Weapon
                 minDist = dist;
             }
         }
-        return tMin.position;
+        return tMin != null ? tMin.position : null;
     }
 
 
